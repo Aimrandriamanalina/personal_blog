@@ -1,0 +1,797 @@
+/* Importation des polices */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Redressed&family=Merriweather');
+
+/* Variables globales */
+:root {
+    --bg-color: rgba(255, 255, 255, 0.945); /* Couleur de fond */
+    --second-bg-color: #555555; /* Couleur secondaire */
+    --text-color: #333333; /* Couleur du texte principal */
+    --secondary-text-color: #777777; /* Couleur du texte secondaire */
+    --main-color: #0ef; /* Couleur principale (liens, boutons) */
+    --hover-color: #0056b3; /* Couleur au survol */
+    --footer-bg-color: linear-gradient(135deg, #2c3e50, #34495e); /* Dégradé du footer */
+    --footer-text-color: #ecf0f1; /* Texte clair pour le footer */
+    --footer-hover-color: #1abc9c; /* Couleur au survol dans le footer */
+    --scroll-top-bg: #333; /* Fond du bouton "Retour en haut" */
+    --scroll-top-hover-bg: #444; /* Fond au survol du bouton "Retour en haut" */
+}
+/*Dark mode*/
+body.dark-mode {
+    /* Variables pour le mode sombre */
+    --bg-color: #1e1e1e; /* Couleur de fond sombre */
+    --text-color: #e0e0e0; /* Couleur du texte principal */
+    --secondary-text-color: #cccccc; /* Couleur du texte secondaire */
+    --main-color: #0ef; /* Couleur principale (liens, boutons) */
+    --hover-color: #0056b3; /* Couleur au survol */
+    --btn-bg-color: #0ef; /* Couleur des boutons */
+    --btn-hover-bg-color: #1abc9c; /* Couleur des boutons au survol */
+}
+
+/* Reset et styles globaux */
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.navbar a {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--main-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Typographie */
+.redressed {
+    font-family: 'Redressed', cursive;
+}
+
+.merriweather {
+    font-family: 'Merriweather', serif;
+}
+
+/* Sections */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    box-shadow: none; /* Pas d'ombre par défaut */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    height: 60px;
+}
+
+/* Header sticky (lorsqu'on scroll) */
+.header.sticky {
+    background: rgb(197, 191, 191); /* Fond légèrement plus foncé */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre subtile */
+}
+
+/* Mode sombre pour le header sticky */
+body.dark-mode .header.sticky {
+    background: rgba(30, 30, 30, 1); /* Fond sombre */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+}
+
+/* Logo et slogan */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacement entre le logo et le texte */
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 50px; /* Taille du logo */
+    height: 50px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+.logo-title {
+    font-size: 1.5rem; /* Taille du titre */
+    font-weight: bold;
+    background: linear-gradient(90deg, #5f68eb, #0ef, #0ef); /* Dégradé de couleurs */
+    -webkit-background-clip: text; /* Applique le dégradé au texte */
+    background-clip: text; /* Standard property for compatibility */
+    -webkit-text-fill-color: transparent; /* Rend le fond du texte transparent */
+    text-transform: uppercase; /* Texte en majuscules pour un style moderne */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+}
+.logo-tagline {
+    font-size: 1rem; /* Taille du slogan */
+    color: var(--secondary-text-color); /* Couleur secondaire */
+    font-style: italic; /* Style italique pour un effet professionnel */
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.navbar a {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--main-color);
+}
+
+#menu-icon {
+    display: none;
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+}
+
+/* Mode sombre pour le header */
+body.dark-mode .header {
+    background: #1e1e1e; /* Fond sombre */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .logo {
+    color:var(--main-color);
+}
+
+body.dark-mode .navbar a {
+    color: #e0e0e0; /* Texte clair pour les liens */
+}
+
+body.dark-mode .navbar a:hover, 
+body.dark-mode .navbar a.active {
+    color:var(--main-color); /* Couleur au survol */
+}
+
+/* Carrousel */
+.banner-carousel {
+    margin-top: 10; /* Supprimez toute marge au-dessus */
+    padding: 0; /* Supprimez tout padding */
+    width: 100%;
+    height: 80vh; /* Hauteur ajustée pour correspondre à une bannière */
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image remplit l'espace sans déformation */
+}
+
+section {
+    min-height: auto; /* Supprimez toute contrainte de hauteur minimale */
+    padding: 0; /* Supprimez tout padding global */
+}
+.banner-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); /* Dégradé sombre */
+    z-index: 1;
+}
+/* Texte superposé sur le carrousel */
+.slide-text {
+    position: absolute;
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste le centrage */
+    text-align: center;
+    color: white; /* Couleur blanche pour le texte */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Ombre pour améliorer la lisibilité */
+    z-index: 10; /* Assurez-vous que le texte est au-dessus de l'image */
+}
+
+.slide-text h1 {
+    font-size: 2.5rem; /* Taille du titre */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.slide-text p {
+    font-size: 1.2rem; /* Taille du texte */
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.slide-text h1, .slide-text p {
+    color: #fff; /* Texte blanc */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre noire subtile */
+}
+
+/* Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    color: white;
+    font-size: 2rem;
+}
+
+/* Swiper pagination */
+.swiper-pagination-bullet {
+    background: white;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--main-color);
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Section de bienvenue */
+/* Style spécifique pour le mot "Aimé Design" */
+.brand-name {
+    font-family: 'Playfair Display', serif; /* Police élégante et moderne */
+    font-weight: 700; /* Texte en gras */
+    font-size: 2.0rem; /* Taille plus grande pour attirer l'attention */
+    letter-spacing: 1.5px; /* Espacement entre les lettres */
+    text-transform: uppercase; /* Texte en majuscules */
+    display: inline-block;
+    background: linear-gradient(90deg, #5f68eb, #35a0f8, #0ef); /* Dégradé de couleurs */
+    -webkit-background-clip: text; /* Applique le dégradé au texte */
+    background-clip: text; /* Standard property for compatibility */
+    -webkit-text-fill-color: transparent; /* Rend le fond du texte transparent */
+    position: relative;
+}
+
+/* Effet de soulignement élégant */
+.brand-name::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50%;
+    height: 3px;
+    background: var(--main-color); /* Couleur d'accentuation */
+    transition: width 0.3s ease;
+}
+
+.brand-name:hover::after {
+    width: 100%; /* Soulignement s'étend au survol */
+}
+
+/* Style pour le texte de bienvenue */
+.welcome-article {
+    padding: 2rem 0rem;
+    background: var(--bg-color); /* Fond clair ou sombre selon le mode */
+    text-align: center;
+}
+
+.welcome-article .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-title {
+    font-size: 2.0rem;
+    color: var(--main-color); /* Couleur principale */
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color); /* Texte principal clair ou sombre */
+    margin-bottom: 1.5rem;
+}
+
+.welcome-article .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--main-color); /* Couleur principale */
+    color: #fff; /* Texte blanc */
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.welcome-article .btn:hover {
+    background: var(--hover-color); /* Couleur au survol */
+    transform: scale(1.05);
+}
+.mission-text {
+    font-size: 1.2rem; /* Taille du texte */
+    line-height: 1.8; /* Hauteur de ligne pour une meilleure lisibilité */
+    color: var(--secondary-text-color); /* Couleur secondaire */
+    margin-top: 1.5rem; /* Espacement au-dessus */
+    text-align: center; /* Centré pour correspondre au style de la section */
+    font-weight: 500; /* Texte légèrement en gras */
+}
+.mission-text strong {
+    color: var(--hover-color); /* Couleur principale pour "Notre mission" */
+    font-weight: 700; /* Texte en gras */
+    text-underline-offset: 3px; /* Décalage de soulignement */
+    text-decoration: underline; /* Soulignement */
+    text-decoration-color: var(--hover-color); /* Couleur du soulignement */
+    text-decoration-thickness: 2px; /* Épaisseur du soulignement */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+    display: inline-block; /* Nécessaire pour le soulignement */
+}
+/* Mode sombre pour la section de bienvenue */
+body.dark-mode .welcome-article {
+    background: var(--bg-color); /* Fond sombre */
+    color: var(--text-color); /* Texte clair */
+}
+
+body.dark-mode .welcome-title {
+    color: var(--main-color); /* Couleur principale pour le titre */
+}
+
+body.dark-mode .welcome-text {
+    color: var(--secondary-text-color); /* Texte secondaire clair */
+}
+
+body.dark-mode .welcome-article .btn {
+    background: var(--btn-bg-color); /* Couleur principale pour le bouton */
+    color: #fff; /* Texte blanc */
+}
+
+body.dark-mode .welcome-article .btn:hover {
+    background: var(--btn-hover-bg-color); /* Couleur au survol */
+}
+
+/* Section des derniers articles */
+.latest-articles {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #9bcaff, rgb(123, 246, 255), #0ef); /* Dégradé de couleurs */
+    color: var(--text-color); /* Couleur du texte */
+    text-align: center;
+}
+  
+  .latest-articles .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajuste automatiquement le nombre de colonnes */
+    gap: 2rem; /* Espacement entre les cartes */
+    justify-content: center; /* Centre les cartes horizontalement */
+    align-items: start; /* Aligne les cartes en haut de chaque ligne */
+    padding: 0 2rem; /* Ajoute un peu de padding */
+}
+  .article-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    min-height: 400px; /* Fixe une hauteur minimale */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Aligne le contenu de manière uniforme */
+  }
+  
+  .article-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .article-image img {
+    width: 100%;
+    height: 250px; /* Fixe une hauteur uniforme */
+    object-fit: cover; /* Ajuste l'image sans déformation */
+}
+  
+  .article-content {
+    padding: 1.5rem;
+  }
+  
+  .article-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .article-excerpt {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .btn.read-more {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn.read-more:hover {
+    background-color: #0056b3;
+  }
+
+/* Trust box */
+.trust-section {
+    padding: 2rem 2rem;
+    text-align: center;
+    background: var(--background-color); /* Fond clair ou sombre selon le mode */
+    color: var(--text-color); /* Texte principal */
+}
+
+.trust-section h2 {
+    font-size: 2.0rem;
+    margin-bottom: 1rem;
+    color: var(--main-color); /* Couleur principale */
+    text-transform: uppercase;
+}
+
+.trust-box {
+    background: var(--background-color); /* Fond secondaire */
+    color: var(--text-color); /* Texte principal */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.trust-list {
+    list-style: none; /* Supprime les puces par défaut */
+    padding: 0;
+    margin: 0;
+}
+
+.trust-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color); /* Texte principal */
+}
+
+.trust-list li i {
+    font-size: 1.5rem;
+    color: var(--main-color); /* Couleur principale pour l'icône */
+}
+
+.trust-section .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 2rem;
+}
+
+.trust-section .btn:hover {
+    background: var(--hover-color);
+    transform: scale(1.05);
+}
+
+/* Section des statistiques */
+.stats {
+    padding: 0;
+    background: #f4f4f9; /* Même fond que les articles */
+    text-align: center;
+}
+
+.stats-container {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background: #fff; /* Fond blanc comme les articles */
+    padding: 2rem;
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    max-width: 300px; /* Même largeur que les articles */
+    transition: transform 0.3s ease; /* Animation au survol */
+    text-align: center;
+}
+
+.stat-box:hover {
+    transform: translateY(-10px); /* Effet de déplacement au survol */
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    color: var(--main-color); /* Couleur principale */
+    margin-bottom: 0.5rem;
+}
+
+.stat-box p {
+    font-size: 1.2rem;
+    color: var(--secondary-text-color); /* Texte secondaire */
+    line-height: 1.5;
+}
+
+/* Mode sombre pour la section des statistiques */
+body.dark-mode .stats {
+    background: var(--bg-color); /* Fond sombre */
+    color: var(--text-color); /* Texte clair */
+}
+
+body.dark-mode .stat-box {
+    background: var(--bg-color); /* Fond sombre */
+    color: var(--text-color); /* Texte clair */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Ombre adaptée au mode sombre */
+}
+
+body.dark-mode .stat-box:hover {
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2); /* Ombre plus marquée */
+}
+
+body.dark-mode .stat-box h3 {
+    color: var(--main-color); /* Couleur principale */
+}
+
+body.dark-mode .stat-box p {
+    color: var(--secondary-text-color); /* Texte secondaire clair */
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg-color); /* Dégradé moderne ou couleur sombre */
+    color: var(--footer-text-color); /* Texte clair */
+    padding: 0;
+    text-align: center;
+    position: relative;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--footer-text-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-link {
+    color: var(--footer-text-color); /* Texte clair */
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: var(--footer-hover-color); /* Couleur au survol */
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.footer-socials a {
+    color: var(--footer-text-color); /* Icônes claires */
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--footer-hover-color); /* Couleur au survol */
+    transform: scale(1.1); /* Agrandissement au survol */
+}
+
+.footer-copyright {
+    font-size: 0.9rem;
+    color: var(--bg-color); /* Texte secondaire */
+    margin-top: 1rem;
+}
+
+
+/* Bouton Retour en haut */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--scroll-top-bg); /* Fond clair */
+    color: #fff; /* Texte blanc */
+    border: none;
+    border-radius: 10%; /* Forme circulaire */
+    width: 50px; /* Taille ajustée */
+    height: 50px; /* Taille ajustée */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem; /* Taille de l'icône */
+    line-height: 1; /* Assure que le texte est bien centré verticalement */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1000;
+    opacity: 0; /* Caché par défaut */
+    visibility: hidden; /* Invisible par défaut */
+}
+
+.scroll-top:hover {
+    transform: scale(1.1); /* Agrandissement au survol */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
+    background: var(--scroll-top-hover-bg); /* Couleur au survol */
+}
+
+/* Affichage du bouton lorsque visible */
+.scroll-top.show {
+    opacity: 1; /* Visible */
+    visibility: visible; /* Affiché */
+}
+
+/* Mode sombre pour le bouton "Retour en haut" */
+body.dark-mode .scroll-top {
+    background: var(--main-color); /* Fond principal pour le mode sombre */
+    color: #fff; /* Texte blanc */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Ombre adaptée au mode sombre */
+}
+
+body.dark-mode .scroll-top:hover {
+    background: var(--hover-color); /* Couleur au survol en mode sombre */
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2); /* Ombre plus marquée */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cta-buttons .btn {
+        padding: 15px 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-buttons .btn {
+        padding: 10px 25px;
+        font-size: 16px;
+    }
+}
